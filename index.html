@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width" />
+        <script type="text/javascript" src="jsEditor.js"></script>
+        <link rel="stylesheet" type="text/css" href="jsEditor.css">
+    </head>
+    <body>
+        <div id='editor' style='width:600px; height:500px;'></div><br/>
+        <input type='button' onclick='alert(Myeditor.jsEditorHTML())' value='show HTML'/>
+        <script type="text/javascript">
+            var Myeditor = new jsEditor('editor' ,{bold:true,
+                italic:true,
+                fontSize:true,
+                fontName:true,
+                foreColor:true,
+                justifyLeft:true,
+                justifyCenter:true,
+                justifyRight:true,
+                createLink:true,
+                insertImage:true,
+                insertHTML:true,
+                underline:true});
+        </script>
+	</body>
+</html>
