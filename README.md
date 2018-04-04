@@ -4,7 +4,7 @@
 
 jsEditor is a simple small WYSIWYG editor.
 
-![jsEditor images](https://github.com/jacobmp70/jsEditor/jsEditor.png "Logo Title Text 1")
+![jsEditor images](https://raw.githubusercontent.com/jacobmp70/jsEditor/master/jsEditor.png "Logo Title Text 1")
   
 To add jsEditor to your website simply
 
