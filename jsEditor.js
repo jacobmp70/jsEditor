@@ -1,20 +1,21 @@
 //under MIT license. made by Jacob Piela. hosted at github.com/jacobmp70/jsEditor
 function jsEditor(id ,settings={}){
     //////privete//////
-    var editor = document.getElementById(id);
-    var doc;
-    var docPage;
+    let editor = document.getElementById(id);
+    let doc;
+    let docPage;
 
 
-    var init = function(){
+    let init = function(){
+        editor = document.getElementById(id);
         //add div for heder items
-        var div = document.createElement('div');
-        div.id = 'heder';
+        let div = document.createElement('div');
+        div.id = 'editorHeder';
         editor.appendChild(div);
-        heder = document.getElementById('heder');
+        heder = document.getElementById('editorHeder');
 
         //add iframe to page
-        var iframe = document.createElement('iframe');
+        let iframe = document.createElement('iframe');
         iframe.id = 'editorPage';
         iframe.srcdoc = "<!DOCTYPE html><html><head><meta charset='utf-8'/></head><body></body></html>";//standard html page
         editor.appendChild(iframe);
@@ -37,8 +38,8 @@ function jsEditor(id ,settings={}){
         }
 
         
-        for(var i=0; i<Object.keys(settings).length; i++){
-            var temp = Object.keys(settings)[i];
+        for(let i=0; i<Object.keys(settings).length; i++){
+            let temp = Object.keys(settings)[i];
             //add top buttons
             if(temp == 'bold'){
                 addItem('button','bold','bold','B');
@@ -81,20 +82,20 @@ function jsEditor(id ,settings={}){
 
     }
 
-    var addItem = function(type ,id ,command='' ,name='' ,value=[]){
+    let addItem = function(type ,id ,command='' ,name='' ,value=[]){
         if(type == 'button'){//button item example(addItem('button','someid','bold','B');)
-        var button = document.createElement('button');
+        let button = document.createElement('button');
         button.id = id;
-        button.className = "hederButton";
+        button.className = "editorHederButton";
         button.innerHTML = name;
         button.onclick = function(){ doc.focus();docPage.execCommand (command, false, function(){ if(value[0] != undefined && value[0] != null){return value[0];}else{return null;}});};
         heder.appendChild(button);
         } else if(type == 'select'){//select item example(addItem('select','someid','fontSize','',[1,2,3,...]);)
-            var select = document.createElement('select');
+            let select = document.createElement('select');
             select.id = id;
-            select.className = "hederSelect";
-            for(var i=0; i<value.length; i++){
-                var option = document.createElement('option');
+            select.className = "editorHederSelect";
+            for(let i=0; i<value.length; i++){
+                let option = document.createElement('option');
                 if(i == 0){
                     option.selected="selected";
                 }
@@ -104,9 +105,9 @@ function jsEditor(id ,settings={}){
             select.onchange = function(){doc.focus(); docPage.execCommand (command, false, document.getElementById(id).value);};
             heder.appendChild(select);
         }  else if(type == 'other'){//costom item example(addItem('other','someid','other.onclick=function(){docPage.execCommand ('bold', false, null);doc.focus();}','div');)
-            var other = document.createElement(name);
+            let other = document.createElement(name);
             other.id = id;
-            other.className = "hederItem";
+            other.className = "editorHederItem";
             if(value[0] != undefined && value[0] != null){
                 other.setAttribute(value[0],value[1]);
             }
@@ -118,7 +119,7 @@ function jsEditor(id ,settings={}){
         }
     }
     ////// on start ////////
-    init();
+    window.onload = init;
 
     //////public//////
     this.jsEditorHTML = function(){
